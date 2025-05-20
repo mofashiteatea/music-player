@@ -307,14 +307,14 @@ document.querySelector('.fa-backward-step').addEventListener('click', () => {
         chooseRandomSong();
         return;
     }
-    chooseSong((songIndex - 1 + songQuantity) % songQuantity);
+    chooseSong((Number(songIndex) - 1 + songQuantity) % songQuantity);
 });
 document.querySelector('.fa-forward-step').addEventListener('click', () => {
     if (playbackMode == 1) {
         chooseRandomSong();
         return;
     }
-    chooseSong((songIndex + 1) % songQuantity);
+    chooseSong((Number(songIndex) + 1) % songQuantity);
 });
 
 //标记喜欢
