@@ -38,6 +38,7 @@ audio {
 
 .lyricsBox p {
     position: relative;
+    cursor: pointer;
 }
 
 .lyricsBox p:hover {
@@ -50,7 +51,6 @@ audio {
     top: 50%;
     transform: translateY(-50%);
     transition: opacity 0.5s ease;
-    opacity: 0;
     color: rgba(255, 255, 255, 0.587);
 }
 
@@ -71,6 +71,14 @@ audio {
 
 .lyricsBox .fa-play {
     left: 96%;
+}
+
+.lyricsBox .beforeBlank {
+    height: 30%; 
+}
+
+.lyricsBox .afterBlank {
+    height: 50%;
 }
 
 @keyframes rainbow {
@@ -114,7 +122,6 @@ audio {
 
 .buttonBox .fa-shuffle {
     font-size: 20px;
-    display: none;
 }
 
 .buttonBox .fa-1 {
@@ -122,7 +129,6 @@ audio {
     left: 9px;
     top: 6px;
     font-size: 12px;
-    display: none;
 }
 
 .buttonBox .fa-play {
@@ -132,6 +138,5 @@ audio {
 }
 
 .buttonBox .fa-pause {
-    display: none;
     font-size: 25px;
 }

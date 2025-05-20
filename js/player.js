@@ -14,7 +14,6 @@ const indicator = document.querySelector('.indicator');
 const centerIcon = document.querySelector('.center.fa-play');
 
 const playIcon = document.querySelector('.buttonBox .fa-play');
-const pauseIcon = document.querySelector('.buttonBox .fa-pause');
 const loveIcon = document.querySelector('.buttonBox .fa-heart');
 
 let playbackMode = 0; // 0: 顺序播放 1: 随机播放 2: 单曲循环
@@ -75,16 +74,16 @@ function getCenterY(obj) {
 //设置显示中心元素
 function setCenterElement(index) {
     centerTime.innerHTML = nowShowTime[index];
-    centerTime.style.opacity = '1';
-    indicator.style.opacity = '1';
-    centerIcon.style.opacity = '1';
+    centerTime.classList.remove('hidden');
+    indicator.classList.remove('hidden');
+    centerIcon.classList.remove('hidden');
 }
 
 //设置不显示中心元素
 function unsetCenterElement() {
-    centerTime.style.opacity = '0';
-    indicator.style.opacity = '0';
-    centerIcon.style.opacity = '0';
+    centerTime.classList.add('hidden');
+    indicator.classList.add('hidden');
+    centerIcon.classList.add('hidden');
 }
 
 //定位中心歌词时间
@@ -176,25 +175,23 @@ songList.addEventListener('click', (e) => {
 })
 audio.addEventListener('play', () => {
     isPlaying = true;
-    playIcon.style.display = 'none';
-    pauseIcon.style.display = 'inline-block';
+    playIcon.className = 'fa-solid fa-pause fa-xl';
     listPlayIcon[songIndex].className = 'fa-solid fa-pause fa-lg';
-    coverImg.style.animationPlayState = 'running';
+    coverImg.classList.remove('paused');
 });
 audio.addEventListener('pause', () => {
     isPlaying = false;
-    playIcon.style.display = 'inline-block';
-    pauseIcon.style.display = 'none';
+    playIcon.className = 'fa-solid fa-play fa-xl';
     listPlayIcon[songIndex].className = 'fa-solid fa-play fa-lg';
-    coverImg.style.animationPlayState = 'paused';
+    coverImg.classList.add('paused');
 });
 
 //标记当前播放歌曲
 function setCurrentSong() {
     for (let i = 0; i < songQuantity; i++) {
-        songList.children[i].children[3].style.visibility = 'hidden';
+        songList.children[i].children[3].classList.add('hidden');
     }
-    songList.children[songIndex].children[3].style.visibility = 'visible';
+    songList.children[songIndex].children[3].classList.remove('hidden');
 }
 
 //选择颜色
@@ -226,11 +223,11 @@ function chooseSong(op) {
 //设置播放模式
 function setPlaybackMode() {
     for (let i = 0; i < 3; i++) {
-        modeIcons[i].style.display = 'none';
+        modeIcons[i].classList.add('none');
     }
-    modeIcons[playbackMode].style.display = 'inline-block';
+    modeIcons[playbackMode].classList.remove('none');
     if (playbackMode == 2) {
-        modeIcons[0].style.display = 'inline-block';
+        modeIcons[0].classList.remove('none');
     }
 }
 modeIcons[0].parentNode.addEventListener('click', () => {
@@ -264,15 +261,12 @@ audio.addEventListener('ended', () => {
 function setSongList() {
     for (let i = 0; i < songQuantity; i++) {
         const div = document.createElement('div');
-        const img = div.appendChild(document.createElement('img'));
-        img.src = cover[i];
-        const p = div.appendChild(document.createElement('p'));
-        p.innerHTML = '<span>' + title[i] + '</span><br>' + singer[i];
-        const i1 = div.appendChild(document.createElement('i'));
-        i1.className = 'fa-regular fa-heart fa-lg';
-        const i2 = div.appendChild(document.createElement('i'));
-        i2.className = 'fa-solid fa-play fa-lg';
-        listPlayIcon[i] = i2;
+        div.innerHTML = `
+            <img src="${cover[i]}">
+            <p><span>${title[i]}</span><br>${singer[i]}</p>
+            <i class="fa-regular fa-heart fa-lg"></i>
+            <i class="fa-solid fa-play fa-lg"></i>`;
+        listPlayIcon[i] = div.children[3];
         div.className = 'song';
         div.setAttribute('data-index', i);
         div.addEventListener('click', (e) => {
@@ -299,10 +293,10 @@ search.addEventListener('input', () => {
     for (let i = 0; i < songQuantity; i++) {
         const p = songList.children[i].children[1];
         if (p.innerHTML.indexOf(search.value) != -1) {
-            songList.children[i].style.display = 'flex';
+            songList.children[i].classList.remove('none');
         }
         else {
-            songList.children[i].style.display = 'none';
+            songList.children[i].classList.add('none');
         }
     }
 });

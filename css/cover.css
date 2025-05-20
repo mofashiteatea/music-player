@@ -14,6 +14,10 @@
     align-items: center;
 }
 
+.cover>.coverImg>img.paused {
+    animation-play-state: paused;
+}
+
 .cover>.coverImg>img {
     width: 90%;
     aspect-ratio: 1/1;
@@ -25,7 +29,7 @@
     mask: radial-gradient(circle,
             transparent 22%,
             black 22%);
-    animation: rotate 10s linear infinite paused;
+    animation: rotate 10s linear infinite;
 }
 
 @keyframes rotate {

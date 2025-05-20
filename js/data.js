@@ -1,5 +1,5 @@
 const title = ['太聪明', '栞', '做个小孩', '呓语', '湘江中路', '我也曾想过一了百了', '空之箱'];
-const singer = ['孟慧圆', 'MyGO!!!!!', '陈绮贞', '毛不易', '庄达菲', 'amazarashi', 'トゲナシトゲアリ'];
+const singer = ['陈绮贞', 'MyGO!!!!!', '孟慧圆', '毛不易', '庄达菲', 'amazarashi', 'トゲナシトゲアリ'];
 const music = ['music/陈绮贞 - 太聪明.mp3', 'music/MyGO!!!!! - 栞.mp3', 'music/孟慧圆 - 做个小孩.mp3',
     'music/毛不易 - 呓语.mp3', 'music/庄达菲 - 湘江中路.mp3', 'music/amazarashi - 僕が死のうと思ったのは.mp3',
     'music/トゲナシトゲアリ - 空の箱 (井芹仁菜、河原木桃香).mp3'];
@@ -703,11 +703,6 @@ function handleLrc(lrc, index) {
                 showTime.push(timeText);
             }
         }
-    }
-    for (let i = 0; i < 5; i++) {
-        time.push(1e9);
-        lyrics.push('&nbsp;');
-        showTime.push('&nbsp;');
     }
     time.push(1e9);
     return { time, lyrics, showTime, size: time.length - 2 };

@@ -43,23 +43,14 @@
     overflow-y: auto;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 6px;
+    -ms-overflow-style: none;
 }
 
 .list::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    display: none;
 }
 
-.list::-webkit-scrollbar-track {
-    background-color:rgba(255, 255, 255, 0.3) ; 
-}
-
-.list::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.15);
-    border-radius: 5px; 
-}
-
-.list>div {
+.list>.song {
     width: 100%;
     height: 20%;
     color: white;
@@ -68,33 +59,35 @@
     justify-content: flex-start;
     align-items: center;
     position: relative;
+    cursor: pointer;
 }
 
-.list>div:hover {
+.list>.song:hover {
     background-color: rgba(255, 255, 255, 0.1); 
 }
 
-.list>div>img {
+.list>.song>img {
     height: 75%;
     object-fit: cover;
     margin: 0 5%;
 }
 
-.list>div>p {
+.list>.song>p {
     width: 48%;
-    cursor: default;
+    cursor: pointer;
 }
 
-.list>div>i {
+.list>.song>i {
     margin: 2%;
+    transition: all 0.2s ease-in-out;
+}
+
+.list>.song>i:hover {
+    transform: translateY(-3px);
 }
 
 .list span {
     font-size: 18px;
-}
-
-.list i{
-    cursor: pointer;
 }
 
 .list .fa-pause{
